@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>FARBS' client</title>
+
+        <link rel="stylesheet" href="static/screen.styl" type="text/stylus" />
+        <script src="../static/style-renderer.js"></script>
+    </head>
+
+    <body>
+        <script type="riot/tag">
+            <tweet>
+                <img class="avatar" src={ user.profile_image_url }>
+
+                <div class="content">
+                    <aside>{ moment(created_at, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow() }</aside>
+                    <header>
+                        <span class="display-name">{ user.name }</span>
+                        <span class="screen-name">@{ user.screen_name }</span>
+                    </header>
+                    <p><raw html={ text } /></p>
+                </div>
+            </tweet>
+        </script>
+
+        <script type="riot/tag">
+            <timeline>
+                <tweet each={ opts.tweets }></tweet>
+            </timeline>
+        </script>
+
+        <main>
+            <timeline></timeline>
+        </main>
+
+        <script src="../node_modules/moment/moment.js"></script>
+        <script src="../node_modules/riot/riot+compiler.js"></script>
+
+        <script src="../static/application.js"></script>
+    </body>
+</html>

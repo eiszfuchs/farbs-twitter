@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "twitter-farbs",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "eiszfuchs <eiszfuchs@eiszblu.me>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "glob": "7.1.0",
+    "moment": "2.15.1",
+    "riot": "2.6.2",
+    "stylus": "0.54.5",
+    "twitter": "1.4.0"
+  }
+}
