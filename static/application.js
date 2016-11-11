@@ -143,6 +143,28 @@ function readHomeTimeline () {
     });
 }
 
+riot.mixin({
+    cleanTweet: (tweet, context) => {
+        if (context.extended_entities) {
+            if (context.extended_entities.media) {
+                context.extended_entities.media.forEach((medium) => {
+                    if (
+                        medium.type != 'photo'
+                        &&
+                        medium.type != 'animated_gif'
+                    ) {
+                        return;
+                    }
+
+                    tweet = tweet.replace(medium.url, '');
+                });
+            }
+        }
+
+        return tweet.trim();
+    }
+});
+
 riot.tag('raw', '', function (options) {
     this.root.innerHTML = options.html;
 });

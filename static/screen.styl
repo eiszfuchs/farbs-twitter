@@ -1,5 +1,6 @@
+$border-radius =      2px;
 $vertical-spacing   = 8px; // |
-$horizontal-spacing = 8px; // -
+$horizontal-spacing = 6px; // -
 
 * {
     margin: 0;
@@ -10,7 +11,7 @@ $horizontal-spacing = 8px; // -
 }
 
 html {
-    background-color: #f2f2f2;
+    background-color: #f1f1f1;
 
     font-family: sans-serif;
     font-size: 12px;
@@ -32,7 +33,7 @@ tweet {
 
     img.avatar {
         display: block;
-        border-radius: 2px;
+        border-radius: $border-radius;
 
         position: absolute;
 
@@ -44,7 +45,7 @@ tweet {
     }
 
     .content {
-        border-radius: 2px;
+        border-radius: $border-radius;
 
         background-color: #ffffff;
         // box-shadow: 0 1px 2px rgba(#000000, .25);
@@ -57,7 +58,7 @@ tweet {
         header {
             opacity: .65;
 
-            margin-bottom: ($horizontal-spacing);
+            line-height: 1.35em;
 
             .display-name {
                 display: block;
@@ -82,16 +83,77 @@ tweet {
             }
         }
 
+        p {
+            raw {
+                display: block;
+
+                &:not(:empty) {
+                    margin-top: ($horizontal-spacing);
+                }
+            }
+        }
+
         aside {
             position: absolute;
             top: $horizontal-spacing;
             right: $vertical-spacing;
+            z-index: 1;
 
             opacity: .35;
+
+            a {
+                cursor: pointer;
+                text-decoration: none;
+            }
         }
 
         p {
             line-height: 1.35em;
+        }
+    }
+
+    media {
+        display: block;
+
+        margin-left: ($avatar-size + $vertical-spacing);
+
+        div {
+            margin-top: $horizontal-spacing;
+        }
+
+        img {
+            display: block;
+
+            max-width: 100%;
+
+            border-radius: $border-radius;
+        }
+
+        .animated_gif {
+            video {
+                width: 100%;
+                height: auto;
+
+                border-radius: $border-radius;
+            }
+
+            position: relative;
+
+            &::before {
+                content: "GIF";
+
+                background-color: rgba(#ffffff, .5);
+
+                padding: 3px 4px;
+                border-radius: $border-radius;
+
+                font-weight: bold;
+                font-size: 10px;
+
+                position: absolute;
+                top: $horizontal-spacing;
+                left: $vertical-spacing;
+            }
         }
     }
 }

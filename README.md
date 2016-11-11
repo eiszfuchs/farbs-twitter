@@ -11,6 +11,9 @@
 - Streams user's Timeline in real-time
 - Ignores Retweets and replies completely
 - Caches displayed Tweets
+- Displays photos and animated GIFs
+- Opens new window to original Tweet on twitter.com when timestamp is clicked
+- Watches `screen.styl` for changes and hot-swaps new styles
 
 
 ## Running

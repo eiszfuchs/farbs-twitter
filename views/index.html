@@ -10,17 +10,38 @@
 
     <body>
         <script type="riot/tag">
+            <media>
+                <div each={ extended_entities.media } class="{ type }">
+                    <img if={ type == 'photo' } src={ media_url_https }>
+
+                    <video if={ type == 'animated_gif' }
+                        width={ video_info.aspect_ratio[0] } height={ video_info.aspect_ratio[1] }
+                        poster={ media_url_https } muted loop autoplay preload>
+
+                        <source each={ video_info.variants } src={ url } type={ content_type }>
+                    </video>
+                </div>
+            </media>
+        </script>
+
+        <script type="riot/tag">
             <tweet>
-                <img class="avatar" src={ user.profile_image_url }>
+                <img class="avatar" src={ user.profile_image_url_https }>
 
                 <div class="content">
-                    <aside>{ moment(created_at, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow() }</aside>
+                    <aside>
+                        <a href={ 'https://twitter.com/' + user.screen_name + '/status/' + id_str } target="_blank">{ moment(created_at, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow() }</a>
+                    </aside>
+
                     <header>
                         <span class="display-name">{ user.name }</span>
                         <span class="screen-name">@{ user.screen_name }</span>
                     </header>
-                    <p><raw html={ text } /></p>
+
+                    <p><raw html={ cleanTweet(text, this) } /></p>
                 </div>
+
+                <media if={ extended_entities.media }>
             </tweet>
         </script>
 
